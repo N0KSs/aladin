@@ -23,7 +23,7 @@ if (isset($_POST['signing-in'])) {
 }
 
 // Ce bloc de code sera réutilisé pour chaque déconnexion avec des formulaires redirigés ici :
-if (isset($_POST['Déconnexion'])) {
+if (isset($_POST['disconnect'])) {
     if (ini_get("session.use_cookies")) {
         $params = session_get_cookie_params();
         setcookie(

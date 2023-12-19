@@ -1,5 +1,4 @@
 <?php
-require_once __DIR__. "/util/functions.php";
 
 
 /**
@@ -109,6 +108,20 @@ class Connexion
             
             return true;
         } else return false;
+    }
+    
+    /**
+     * inscrire
+     * Inscris un utilisateur, l'ajoute à la DB et affecte sa variable de ssions en conséquence.
+     * @param  string $lname
+     * @param  string $fname
+     * @param  string $mail
+     * @param  string $pwd
+     * @return void
+     */
+    public function inscrire(string $lname, string $fname, string $mail, string $pwd) {
+        // Une amélioration aurait été d'ajouter un trigger à la table user créant automatiquement l'username unique, on ne peut pas modifier la structure de la DB donc nous ne le ferons pas.
+    
     }
 
 }

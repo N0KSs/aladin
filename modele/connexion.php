@@ -1,6 +1,8 @@
 <?php
 
-
+// require_once "../utils/functions.php";
+require_once "../modele/classes/UserDAO.class.php";
+require_once "../modele/classes/User.class.php";
 /**
  * Connexion
  * Permets de se connecter à la base de donnée et gère le LOGIN
@@ -9,7 +11,7 @@
 class Connexion
 {
     private $db;
-    
+
     /**
      * __construct
      *
@@ -36,7 +38,7 @@ class Connexion
         }
     }
 
-    
+
     /**
      * execSQL
      *
@@ -44,7 +46,7 @@ class Connexion
      * @param  array $valeurs Paramètre de la Requête SQL
      * @return array Colonnes retournées suite à la requête (si colonnes).
      */
-    public function execSQL(string $req, array $valeurs = []):array
+    public function execSQL(string $req, array $valeurs = []): array
     {
         $res = $this->db->prepare($req);
 
@@ -58,33 +60,31 @@ class Connexion
 
         return $allRes;
     }
-    
+
     /**
      * existeUtilisateur
      *
      * @param  array $identifiants 
      * @return bool Est vrai si l'utilisateur existe sinon faux
      */
-    public function existeUtilisateur (array $identifiants) : bool {
+    public function existeUtilisateur(array $identifiants): bool
+    {
         $req = "SELECT * FROM user WHERE user_name=:identifiant";
         $allRes = $this->execSQL($req, [":identifiant" => $identifiants["login"]]);
-    
-        if(count($allRes) > 0) return true;
+
+        if (count($allRes) > 0) return true;
         else return false;
-    } 
-        
+    }
+
     /**
-     * getRole
-     * Renvoie le rôle d'un user
-     * @param  string $login
-     * @return array
+     * getLastInsertId
+     * Récupère l'id du dernier enregistrement inséré
+     * @return string
      */
-    public function getRole (string $login) : array {
-        $req = "SELECT * FROM role WHERE role.role_id = user.role_id AND user_username=:login";
-        $allRes = $this->execSQL($req, [":login" => $login]);
-    
-        return $allRes;
-    } 
+    public function getLastInsertId(): string
+    {
+        return $this->db->lastInsertId();
+    }
 
     /**
      * verifMdp
@@ -92,24 +92,22 @@ class Connexion
      * @param  array $identifiants Tableau contenant le login entré par un USER
      * @return bool Renvoie vrai si les infos entrées sont correctes sinon faux
      */
-    public function verifMdp(array $identifiants): bool{
-        $req = "SELECT * FROM conducteur WHERE no_permis=:identifiant";
-        $allRes = $this->execSQL($req, [":identifiant" => $identifiants["login"]]);
-        
-        $verifMdp = password_verify($identifiants["motDePasse"], $allRes[0]['pwd']);
-        if($verifMdp) {
-            $_SESSION['login'] = $identifiants['login'];
-            $_SESSION['mdp'] = $identifiants['motDePasse'];
-            $_SESSION['prenom'] = $allRes[0]['fname'];
+    public function verifMdp(array $identifiants): bool
+    {
+        $req = "SELECT * FROM user WHERE user_name=:pseudo";
+        $allRes = $this->execSQL($req, [":pseudo" => $identifiants["username"]]);
+
+        $verifMdp = password_verify($identifiants["pwd"], $allRes[0]['pwd']);
+        if ($verifMdp) {
+            $_SESSION['username'] = $identifiants['username'];
             $_SESSION['nom'] = $allRes[0]['lname'];
-            $_SESSION['id'] = $allRes[0]['id'];
-            $_SESSION['role'] = $this->getRole($identifiants["login"]);
- 
-            
+            $_SESSION['prenom'] = $allRes[0]['fname'];
+            $_SESSION['pwd'] = $identifiants['pwd']; // Mot de passe sans HASH
+            $_SESSION['roleId'] = $allRes[0]["role_id"];
             return true;
         } else return false;
     }
-    
+
     /**
      * inscrire
      * Inscris un utilisateur, l'ajoute à la DB et affecte sa variable de ssions en conséquence.
@@ -117,13 +115,27 @@ class Connexion
      * @param  string $fname
      * @param  string $mail
      * @param  string $pwd
-     * @return void
+     * @return int
      */
-    public function inscrire(string $lname, string $fname, string $mail, string $pwd) {
+    public function inscrire(string $lname, string $fname, string $mail, string $pwd)
+    {
         // Une amélioration aurait été d'ajouter un trigger à la table user créant automatiquement l'username unique, on ne peut pas modifier la structure de la DB donc nous ne le ferons pas.
-    
+
+        $userDAO = new UserDAO();
+        // On crée un utilisateur à partir de nos données.
+        // # Les champs vides seront (possiblement) modifié ultérieurement.
+        $user = new User(0, "", $mail, $pwd, $fname, $lname, 0, 0, "", 1);
+        $newUser = $userDAO->insert($user);
+
+        // L'utilisateur est inséré dans la DB, on l'assigne à la session :
+        if (isset($newUser)) {
+            $_SESSION['username'] = $newUser->getUserName();
+            $_SESSION['prenom'] = $newUser->getFirstName();
+            $_SESSION['pwd'] = $pwd; // Mot de passe sans HASH
+            $_SESSION['nom'] = $newUser->getLastName();
+            $_SESSION['roleId'] = $newUser->getRoleId();
+            // D'autres informations seront ajoutés au fur et à mesure des besoins
+            return 0;
+        } else return -1;
     }
-
 }
-
-?>

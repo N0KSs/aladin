@@ -6,8 +6,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$identifiants['login'] = isset($_POST['username']) ? $_POST['username'] : null;
-$identifiants['motDePasse'] = isset($_POST['pwd']) ? $_POST['pwd'] : null;
+$identifiants['username'] = isset($_POST['username']) ? $_POST['username'] : null;
+$identifiants['pwd'] = isset($_POST['pwd']) ? $_POST['pwd'] : null;
 $message = "";
 
 if (isset($_POST['signing-in'])) {

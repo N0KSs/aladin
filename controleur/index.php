@@ -7,9 +7,9 @@ error_reporting(E_ALL);
 
 require_once "../modele/classes/ProduitDAO.class.php";
 
-// if (!isset($_SESSION['login'])) {
-//     header("location: ./login.php");
-// }
+if (!isset($_SESSION['login'])) {
+    header("location: ./login.php");
+}
 
 // Génération dynamique du catalogue :
 // Explication du code : Nous parcourons le tableau des produits sur la base de données. Les attributs de chaque élément sont alors assignés dynamiquement à des balises HTML.

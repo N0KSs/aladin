@@ -307,3 +307,13 @@ footer p a{
 .menu > li > a:hover  {
     color: #bbbbbb;
 }
+
+.logo > h1 > a {
+    color: white;
+    text-decoration: none;
+}
+
+.logo > h1 > a:hover {
+    color: #bbbbbb;
+}
+

@@ -13,7 +13,7 @@
 
     <nav class="navbar">
         <div class="logo">
-            <h1>Aladdin</h1>
+            <h1><a href="index.php">Aladdin</a></h1>
         </div>
         <ul class="menu">
             <li><a href="index.html" class="active">Inscription</a></li>
@@ -27,11 +27,11 @@
         <h2>Inscription</h2>
         <form action="../controleur/signup.php" method="post">
             <label for="lname">Nom:</label>
-            <input type="text" id="lname" name="lname" value="<?=$identifiants['lname']?>">
+            <input type="text" id="lname" name="lname" value="<?= $identifiants['lname'] ?>">
             <label for="fname">Prénom:</label>
-            <input type="text" id="fname" name="fname" value="<?=$identifiants['fname']?>">
+            <input type="text" id="fname" name="fname" value="<?= $identifiants['fname'] ?>">
             <label for="mail">Email:</label>
-            <input type="mail" id="mail" name="mail" value="<?=$identifiants['mail']?>">
+            <input type="mail" id="mail" name="mail" value="<?= $identifiants['mail'] ?>">
 
             <label for="pwd">Mot de passe:</label>
             <input type="password" id="pwd" name="pwd">
@@ -49,7 +49,7 @@
     </section>
 
     <footer>
-        <p>Copyrights<a href="index.html">Alladin</a></p>
+        <p>Copyrights <a href="index.php">Alladin</a></p>
     </footer>
 
 </body>

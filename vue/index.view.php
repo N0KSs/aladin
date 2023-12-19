@@ -11,9 +11,9 @@
 <body>
 
     <nav class="navbar">
-        <div class="logo"><h1>Aladdin</h1></div>
+        <div class="logo"><h1><a  href="index.php">Aladdin</a></h1></div>
         <ul class="menu">
-            <li><a href="index.html" class="active">Accueil</a></li>
+            <li><a href="index.php" class="active">Accueil</a></li>
             <li><a href="#">Nouveautés</a></li>
             <li><a href="#"><span class="fa-solid fa-user"></span>Mon compte</a></li>
             <li><a href="#"><span class="fas fa-shopping-car"></span>Panier</a></li>
@@ -103,7 +103,7 @@
         </div>
     </section>
 <footer>
-    <p>Copyrights<a href="#">Alladin</a></p>
+    <p>Copyrights <a href="#">Alladin</a></p>
 </footer>
 
 </body>

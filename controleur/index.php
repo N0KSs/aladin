@@ -6,6 +6,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require_once "../modele/classes/ProduitDAO.class.php";
+$produitDAO = new ProduitDAO();
 
 if (!isset($_SESSION['login'])) {
     header("location: ./login.php");
@@ -15,18 +16,25 @@ if (!isset($_SESSION['login'])) {
 $panel = $_SESSION['roleId'] != 1 ? '<li><a href="panel.php">Panel</a></li>':"";
 
 // On utilise ce fichier comme un réceptionniste d'ajout au panier :
-if(isset($_POST['addCart'])) {
     // Un ajout au panier est détecté.
+if(isset($_POST['addCart'])) {
     $idProduit = $_POST["addCart"];
     // On ajoute cette id de produit au panier de l'utilisateur :
     $_SESSION['cart'][] = $idProduit;
 }
 
+$cartList = "";
+if(count($_SESSION['cart']) == 0) {
+    $cartList = "<p> Vide ..?</p>";
+}
+foreach ($_SESSION['cart'] as $idProduit) {
+    $produit = $produitDAO->getById($idProduit);
+    $cartList .= '<p>- '.$produit->getName().' : '.$produit->getPrice().'$</p>'; 
+}
 
 // Génération dynamique du catalogue :
 // Explication du code : Nous parcourons le tableau des produits sur la base de données. Les attributs de chaque élément sont alors assignés dynamiquement à des balises HTML.
 
-$produitDAO = new ProduitDAO();
 $produits = $produitDAO->getAll();
 $dynamicHTML = '<form class="produits" action="../controleur/index.php" method="post"> ';
 foreach ($produits as $produit) {

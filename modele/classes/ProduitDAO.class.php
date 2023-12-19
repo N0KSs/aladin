@@ -1,7 +1,7 @@
 
 <?php
-require_once dirname(__DIR__, 1). "/connexion.php";
-require_once __DIR__."/Produit.class.php";
+require_once dirname(__DIR__, 1) . "/connexion.php";
+require_once __DIR__ . "/Produit.class.php";
 
 /**
  * ProduitDAO
@@ -18,13 +18,13 @@ class ProduitDAO
         $this->select = 'SELECT * FROM product';
     }
 
-     /**
+    /**
      * loadQuery
      * Transforme un résultat SQL en tableau d'instance de la classe correspondante
      * @param  array $result
      * @return Produit[]
      */
-        private function loadQuery(array $result): array
+    private function loadQuery(array $result): array
     {
         $produits = [];
         foreach ($result as $row) {
@@ -40,7 +40,7 @@ class ProduitDAO
         return $produits;
     }
 
-      /**
+    /**
      * getAll
      * Récupère tous les produits de la DB
      * @return Produit[]
@@ -50,6 +50,24 @@ class ProduitDAO
         return $this->loadQuery($this->bd->execSQL($this->select));
     }
 
+    /**
+     * getById
+     * Récupère un produit à partir de son ID
+     * @param  string $id
+     * @return Produit
+     */
+    public function getById(string $id): Produit
+    {
+        $produit = new Produit();
+        $result = $this->bd->execSQL($this->select . " WHERE id=:id", [':id' => $id]);
+        $produits = $this->loadQuery($result);
+
+        if (count($produits) > 0) {
+            $produit = $produits[0];
+        }
+
+        return $produit;
+    }
 }
 
 ?>

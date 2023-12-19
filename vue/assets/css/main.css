@@ -327,3 +327,26 @@ footer p a{
     color: #bbbbbb;
 }
 
+/* Menu hover pour le panier : */
+.cart-view {
+    display: none;
+    background-color: black;
+    color: white;
+    height: fit-content;
+    padding: 10%;
+    width: fit-content;
+
+}
+
+.cart-container:hover + .cart-view {
+    display: flex !important;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    inset: 0;
+    top: 150%;
+}
+
+.cart-view > p {
+    white-space:nowrap;
+}

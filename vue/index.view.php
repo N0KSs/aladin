@@ -20,8 +20,13 @@
             <li><a href="index.php" class="active">Accueil</a></li>
             <li><a href="#">Nouveautés</a></li>
             <li><a href="#"><span class="fa-solid fa-user"></span> Mon compte</a></li>
-            <li><a href="#"><span class="fas fa-shopping-cart"></span> Panier</a></li>
-            <?=$panel?>
+            <li style="position: relative;">
+                <a class="cart-container" href="#"><span class="fas fa-shopping-cart"></span> Panier</a>
+                <div class="cart-view">
+                    <?=$cartList?>
+                </div>
+            </li>
+            <?= $panel ?>
             <li>
                 <form action="../controleur/login.php">
                     <input type="submit" name="disconnect" value=" " class="fa-solid fa-user-slash" style="margin-left: 10px;cursor: pointer;" />
@@ -32,9 +37,9 @@
 
     <section class="section_produits">
         <h1 class="produits_txt">Catalogue :</h1>
-        <h2 >Tendance :</h2>
+        <h2>Tendance :</h2>
 
-        <?=$dynamicHTML?>
+        <?= $dynamicHTML ?>
     </section>
     <footer>
         <p>Copyrights <a href="#">Alladin</a></p>

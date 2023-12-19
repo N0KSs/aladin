@@ -27,11 +27,11 @@
         <h2>Inscription</h2>
         <form action="../controleur/signup.php" method="post">
             <label for="lname">Nom:</label>
-            <input type="text" id="lname" name="lname">
+            <input type="text" id="lname" name="lname" value="<?=$identifiants['lname']?>">
             <label for="fname">Prénom:</label>
-            <input type="text" id="fname" name="fname">
+            <input type="text" id="fname" name="fname" value="<?=$identifiants['fname']?>">
             <label for="mail">Email:</label>
-            <input type="mail" id="mail" name="mail">
+            <input type="mail" id="mail" name="mail" value="<?=$identifiants['mail']?>">
 
             <label for="pwd">Mot de passe:</label>
             <input type="password" id="pwd" name="pwd">

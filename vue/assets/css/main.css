@@ -181,18 +181,20 @@ body{
     border-radius: 5px;
     cursor: pointer;
 }
+
 .produits_txt{
-    text-align: left;
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 300;
-    margin-top: 30px;
-    margin-left: 80px;
     color: #424144;
+    margin-left: 5vw;
+    margin-bottom: 2.5vw;
 }
+
 .section_produits{
     padding: 40px 5%;
 }
 .produits{
+    margin-top: 2%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px,1fr));
 }

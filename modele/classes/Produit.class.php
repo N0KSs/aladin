@@ -9,11 +9,11 @@ class Produit
     private string $id;
     private string $name;
     private int $quantity;
-    private int $price;
+    private float $price;
     private string $imgUrl;
     private string $description;
 
-    function __construct(string $id = '', string $name = '', int $quantity = 0, int $price = 0, string $img_url = '', string $description = '')
+    function __construct(string $id = '', string $name = '', int $quantity = 0, float $price = 0, string $img_url = '', string $description = '')
     {
         $this->id = $id;
         $this->name = $name;
@@ -59,12 +59,12 @@ class Produit
     }
 
     // Getter et Setter pour $price
-    function getPrice(): int
+    function getPrice(): float
     {
         return $this->price;
     }
 
-    function setPrice(int $price): void
+    function setPrice(float $price): void
     {
         $this->price = $price;
     }

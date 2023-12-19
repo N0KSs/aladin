@@ -22,7 +22,7 @@ class ProduitDAO
      * loadQuery
      * Transforme un résultat SQL en tableau d'instance de la classe correspondante
      * @param  array $result
-     * @return array
+     * @return Produit[]
      */
         private function loadQuery(array $result): array
     {
@@ -43,7 +43,7 @@ class ProduitDAO
       /**
      * getAll
      * Récupère tous les produits de la DB
-     * @return array
+     * @return Produit[]
      */
     public function getAll(): array
     {

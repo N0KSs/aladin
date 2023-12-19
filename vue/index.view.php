@@ -21,6 +21,7 @@
             <li><a href="#">Nouveautés</a></li>
             <li><a href="#"><span class="fa-solid fa-user"></span> Mon compte</a></li>
             <li><a href="#"><span class="fas fa-shopping-cart"></span> Panier</a></li>
+            <?=$panel?>
             <li>
                 <form action="../controleur/login.php">
                     <input type="submit" name="disconnect" value=" " class="fa-solid fa-user-slash" style="margin-left: 10px;cursor: pointer;" />

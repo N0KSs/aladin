@@ -22,7 +22,7 @@ if (isset($_POST['signing-in'])) {
     header("location: ./signup.php");
 }
 
-// Ce bloc de code sera réutilisé pour chaque déconnexion avec des formulaires redirigés ici :
+// Ce bloc de code sera réutilisé pour chaque déconnexion avec des formulaires redirigés sur ce fichier :
 if (isset($_POST['disconnect'])) {
     if (ini_get("session.use_cookies")) {
         $params = session_get_cookie_params();

@@ -70,7 +70,7 @@ class Connexion
     public function existeUtilisateur(array $identifiants): bool
     {
         $req = "SELECT * FROM user WHERE user_name=:identifiant";
-        $allRes = $this->execSQL($req, [":identifiant" => $identifiants["login"]]);
+        $allRes = $this->execSQL($req, [":identifiant" => $identifiants["username"]]);
 
         if (count($allRes) > 0) return true;
         else return false;
@@ -104,6 +104,7 @@ class Connexion
             $_SESSION['prenom'] = $allRes[0]['fname'];
             $_SESSION['pwd'] = $identifiants['pwd']; // Mot de passe sans HASH
             $_SESSION['roleId'] = $allRes[0]["role_id"];
+            $_SESSION['cart'] = []; // Panier vide à chaque connexion
             return true;
         } else return false;
     }
@@ -135,6 +136,7 @@ class Connexion
             $_SESSION['nom'] = $newUser->getLastName();
             $_SESSION['roleId'] = $newUser->getRoleId();
             // D'autres informations seront ajoutés au fur et à mesure des besoins
+            $_SESSION['cart'] = []; // Panier vide à chaque connexion
             return 0;
         } else return -1;
     }

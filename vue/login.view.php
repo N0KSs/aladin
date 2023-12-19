@@ -26,8 +26,8 @@
     <section class="login-section">
         <h2>Connexion</h2>
         <form action="../controleur/login.php" method="post">
-            <label for="username">Nom:</label>
-            <input type="text" name="name">
+            <label for="username">Pseudonyme:</label>
+            <input type="text" name="username">
 
             <label for="pwd">Mot de passe:</label>
             <input type="password" id="pwd" name="pwd">

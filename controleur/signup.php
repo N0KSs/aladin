@@ -26,7 +26,7 @@ if (isset($_POST['signing-in'])) {
     if (strlen($message) == 0) {
         $connexion = new Connexion();
         // Inscrire et mettre en session l'utilisateur :
-        $connexion->inscrire($_POST["lname"], $_POST["fname"], $_POST["mail"], $_POST["pwd"]);
+        $connexion->register($_POST["lname"], $_POST["fname"], $_POST["mail"], $_POST["pwd"]);
 
         header("location: ./index.php");
     } else {

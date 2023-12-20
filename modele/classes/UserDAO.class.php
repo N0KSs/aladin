@@ -142,6 +142,21 @@ public function insert(User $user): ?User
 
         return $userName;
     }
+
+        /**
+     * updateValue
+     * Mets à jour un champ précis, pour un utilisateur précis, à une valeur précise.
+     * @param  string $username Pseudo de l'utilisateur
+     * @param  string $value Valeur remplaçante
+     * @param  string $field Champ concerné
+     * @return void
+     */
+    public function updateValue(string $username, string $value, string $field): void
+    {
+        $req = "UPDATE user SET " . $field . " = :val WHERE user_name = :username";
+        $this->bd->execSQL($req, [":val" => $value, ":username" => $username]);
+    }
+
 }
 
 ?>

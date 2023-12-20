@@ -19,7 +19,7 @@
         <ul class="menu">
             <li><a href="index.php">Accueil</a></li>
             <li><a href="#">Nouveautés</a></li>
-            <li><a href="#"><span class="fa-solid fa-user"></span> Mon compte</a></li>
+            <li><a href="settings.php"><span class="fa-solid fa-user"></span> Mon compte</a></li>
             <li><a class="cart-container active" href="#"><span class="fas fa-shopping-cart"></span> Panier</a></li>
             <li>
                 <form action="../controleur/login.php">

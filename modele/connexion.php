@@ -100,8 +100,8 @@ class Connexion
         $verifMdp = password_verify($identifiants["pwd"], $allRes[0]['pwd']);
         if ($verifMdp) {
             $_SESSION['username'] = $identifiants['username'];
-            $_SESSION['nom'] = $allRes[0]['lname'];
-            $_SESSION['prenom'] = $allRes[0]['fname'];
+            $_SESSION['lname'] = $allRes[0]['lname'];
+            $_SESSION['fname'] = $allRes[0]['fname'];
             $_SESSION['pwd'] = $identifiants['pwd']; // Mot de passe sans HASH
             $_SESSION['roleId'] = $allRes[0]["role_id"];
             $_SESSION['cart'] = []; // Panier vide à chaque connexion
@@ -110,7 +110,7 @@ class Connexion
     }
 
     /**
-     * inscrire
+     * register
      * Inscris un utilisateur, l'ajoute à la DB et affecte sa variable de ssions en conséquence.
      * @param  string $lname
      * @param  string $fname
@@ -118,7 +118,7 @@ class Connexion
      * @param  string $pwd
      * @return int
      */
-    public function inscrire(string $lname, string $fname, string $mail, string $pwd)
+    public function register(string $lname, string $fname, string $mail, string $pwd)
     {
         // Une amélioration aurait été d'ajouter un trigger à la table user créant automatiquement l'username unique, on ne peut pas modifier la structure de la DB donc nous ne le ferons pas.
 
@@ -131,13 +131,30 @@ class Connexion
         // L'utilisateur est inséré dans la DB, on l'assigne à la session :
         if (isset($newUser)) {
             $_SESSION['username'] = $newUser->getUserName();
-            $_SESSION['prenom'] = $newUser->getFirstName();
+            $_SESSION['lname'] = $newUser->getLastName();
+            $_SESSION['fname'] = $newUser->getFirstName();
             $_SESSION['pwd'] = $pwd; // Mot de passe sans HASH
-            $_SESSION['nom'] = $newUser->getLastName();
             $_SESSION['roleId'] = $newUser->getRoleId();
             // D'autres informations seront ajoutés au fur et à mesure des besoins
             $_SESSION['cart'] = []; // Panier vide à chaque connexion
             return 0;
         } else return -1;
+    }
+
+
+    /**
+     * deleteByUsername
+     * Supprime un utilisateur de la base de données en utilisant son username
+     * @param  string $username
+     * @return bool Retourne true si la suppression est réussie, sinon false
+     */
+    public function deleteByUsername(string $username): bool
+    {
+        // Utilisation d'une requête DELETE pour supprimer l'utilisateur en fonction de son username
+        $req = "DELETE FROM user WHERE user_name = :username";
+        $values = [':username' => $username];
+
+        $this->execSQL($req, $values);
+        return true;
     }
 }

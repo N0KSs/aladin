@@ -398,6 +398,64 @@ footer p a{
 }
 
 
+
+.settings-section {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.settings-section h2 {
+    text-align: center;
+    color: #424144;
+}
+
+.settings-section form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.settings-section label {
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.settings-section input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.settings-section button {
+    background: #f63e4e;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.settings-section button:hover {
+    background: #333;
+}
+
+.settings-section h3 {
+    color: #f63e4e;
+    margin-top: 20px;
+}
+
+.settings-section p {
+    margin-top: 10px;
+    color: #777;
+}
+
 .footer {
     margin-top: 20px;
 }
+
+

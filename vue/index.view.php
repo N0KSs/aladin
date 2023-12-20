@@ -21,7 +21,7 @@
             <li><a href="#">Nouveautés</a></li>
             <li><a href="#"><span class="fa-solid fa-user"></span> Mon compte</a></li>
             <li style="position: relative;">
-                <a class="cart-container" href="#"><span class="fas fa-shopping-cart"></span> Panier</a>
+                <a class="cart-container" href="./checkout.php"><span class="fas fa-shopping-cart"></span> Panier</a>
                 <div class="cart-view">
                     <?=$cartList?>
                 </div>

@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 require_once "../modele/classes/ProduitDAO.class.php";
 $produitDAO = new ProduitDAO();
 
-if (!isset($_SESSION['login'])) {
+if (!isset($_SESSION['username'])) {
     header("location: ./login.php");
 }
 

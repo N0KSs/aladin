@@ -350,3 +350,54 @@ footer p a{
 .cart-view > p {
     white-space:nowrap;
 }
+
+.checkout-section {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.checkout-section h2, .checkout-section h3 {
+    text-align: center;
+    color: #424144;
+}
+
+.checkout-section form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.checkout-section label {
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.checkout-section input,
+.checkout-section select {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.checkout-section button {
+    background: #f63e4e;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.checkout-section button:hover {
+    background: #333;
+}
+
+
+.footer {
+    margin-top: 20px;
+}
